@@ -65,26 +65,26 @@ const statesData = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Select all the state paths using the 'land' class from your SVG
+    
     const paths = document.querySelectorAll('path.land');
     const infoPanel = document.getElementById('info-panel');
 
     paths.forEach(path => {
         path.addEventListener('click', function() {
             
-            // Remove the active color from all states
+            
             paths.forEach(p => p.classList.remove('active-state'));
             
-            // Highlight the clicked state
+            
             this.classList.add('active-state');
 
-            // Grab the ID and Title directly from the SVG code you pasted
+            
             const stateId = this.getAttribute('id');
             const stateName = this.getAttribute('title'); 
             const data = statesData[stateId];
 
             if (data) {
-                // Inject the data into the HTML
+                
                 infoPanel.innerHTML = `
                     <h2>${stateName}</h2>
                     <div class="info-item"><strong>🏛️ Capital:</strong> ${data.capital}</div>
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="info-item"><strong>🎉 Culture:</strong> ${data.culture}</div>
                 `;
             } else {
-                // If they click a state we haven't added to the dictionary yet
+               
                 infoPanel.innerHTML = `
                     <h2>${stateName}</h2>
                     <p>Looks like data for ${stateName} hasn't been added to the database yet. You can add it in the script.js file!</p>
@@ -102,4 +102,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
 });
