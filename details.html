@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Deep Dive</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .details-container { max-width: 800px; margin: 3rem auto; padding: 3rem; background: white; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .details-container h1 { color: #FF9933; margin-bottom: 1.5rem; font-size: 2.5rem; border-bottom: 3px solid #eee; padding-bottom: 1rem;}
+        .details-container h3 { color: #138808; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.5rem; }
+        body.dark-mode .details-container h3 { color: #66ff66; }
+        body.dark-mode .details-container h1 { border-bottom: 3px solid #444; }
+        p { font-size: 1.15rem; line-height: 1.6; margin-bottom: 1rem; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #000080; text-decoration: none; font-weight: bold; }
+        body.dark-mode .back-btn { color: #4da6ff; }
+    </style>
+</head>
+<body>
+    <script>if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');</script>
+
+    <main class="details-container fade-in">
+        <a href="index.html" class="back-btn">⬅ Back to Map</a>
+        <div id="content"></div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Read the state ID from the URL (e.g., details.html?id=IN-MP)
+        const urlParams = new URLSearchParams(window.location.search);
+        const stateId = urlParams.get('id');
+        
+        setTimeout(() => {
+            const data = typeof statesData !== 'undefined' ? statesData[stateId] : null;
+            const contentDiv = document.getElementById('content');
+
+            if (data && data.history) {
+                contentDiv.innerHTML = `
+                    <h1>${data.name || "State Explorer"}</h1>
+                    <h3>📜 History</h3><p>${data.history}</p>
+                    <h3>✨ Specialties</h3><p>${data.specialties}</p>
+                    <h3>🎭 Traditions</h3><p>${data.traditions}</p>
+                    <h3>👗 Clothing</h3><p>${data.clothing}</p>
+                `;
+            } else {
+                contentDiv.innerHTML = `<h1>Data Missing</h1><p>Deep dive info for this state hasn't been added yet.</p>`;
+            }
+        }, 50);
+    </script>
+</body>
+</html>
