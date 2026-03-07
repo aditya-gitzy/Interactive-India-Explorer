@@ -100,3 +100,67 @@ path.land.active-state {
     border-left: 4px solid #138808;
 
 }
+/* --- ANIMATIONS & BUTTONS --- */
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.details-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #138808;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.details-btn:hover { background-color: #0b4d05; }
+
+#theme-toggle {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #000080;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* --- DARK MODE OVERRIDES --- */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode header {
+    background: linear-gradient(to right, #8a4300, #222222, #083b03);
+}
+
+body.dark-mode header h1, body.dark-mode header p { color: #f8f9fa; }
+
+body.dark-mode .map-section, 
+body.dark-mode .info-panel,
+body.dark-mode .details-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+body.dark-mode path.land { fill: #2c2c2c; stroke: #444; }
+
+body.dark-mode .info-item {
+    background-color: #2c2c2c;
+    color: #f1f1f1;
+    border-left: 4px solid #FF9933; 
+}
+
